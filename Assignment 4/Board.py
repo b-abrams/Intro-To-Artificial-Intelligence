@@ -1,19 +1,25 @@
+
 class Board:
+
+    """ Initialize board """
     def __init__(self, queens: int):
-        self.spaces = [["-" for i in range(queens)] for k in range(queens)]
+        self.queens = queens
+        self.spaces = [[u"\u2022" for col in range(queens)] for row in range(queens)]
 
-    def populate(self, positions: str):
-        i = 0
-        for n in range(len(positions)):
-            (self.spaces[int(positions[n])])[i] = "Q"
-            i += 1
+    """ Populate board using list """
+    def populate(self, positions: list):
+        col = 0
+        for row in range(len(positions)):
+            (self.spaces[int(positions[row]) - 1])[col] = "Q"
+            col += 1
 
+    """ Display the board instance """
     def display(self):
-        for l in self.spaces:
-            print(l)
-
+        for element in self.spaces:
+            print("[", " ".join(element), "]")
 
 if __name__ == "__main__":
-    b = Board(8)
-    b.populate("21432101")
+    test = "24415124"
+    b = Board(len(test))
+    b.populate(test)
     b.display()
